@@ -106,6 +106,7 @@ import im.vector.app.features.roomprofile.RoomProfileFragment
 import im.vector.app.features.roomprofile.alias.RoomAliasFragment
 import im.vector.app.features.roomprofile.banned.RoomBannedMemberListFragment
 import im.vector.app.features.roomprofile.members.RoomMemberListFragment
+import im.vector.app.features.roomprofile.notifications.RoomNotificationSettingsFragment
 import im.vector.app.features.roomprofile.permissions.RoomPermissionsFragment
 import im.vector.app.features.roomprofile.settings.RoomSettingsFragment
 import im.vector.app.features.roomprofile.settings.joinrule.RoomJoinRuleChooseRestrictedFragment
@@ -141,6 +142,7 @@ import im.vector.app.features.signout.soft.SoftLogoutFragment
 import im.vector.app.features.spaces.SpaceListFragment
 import im.vector.app.features.spaces.create.ChoosePrivateSpaceTypeFragment
 import im.vector.app.features.spaces.create.ChooseSpaceTypeFragment
+import im.vector.app.features.spaces.create.CreateSpaceAdd3pidInvitesFragment
 import im.vector.app.features.spaces.create.CreateSpaceDefaultRoomsFragment
 import im.vector.app.features.spaces.create.CreateSpaceDetailsFragment
 import im.vector.app.features.spaces.explore.SpaceDirectoryFragment
@@ -719,6 +721,11 @@ interface FragmentModule {
 
     @Binds
     @IntoMap
+    @FragmentKey(RoomNotificationSettingsFragment::class)
+    fun bindRoomNotificationSettingsFragment(fragment: RoomNotificationSettingsFragment): Fragment
+
+    @Binds
+    @IntoMap
     @FragmentKey(SearchFragment::class)
     fun bindSearchFragment(fragment: SearchFragment): Fragment
 
@@ -786,6 +793,11 @@ interface FragmentModule {
     @IntoMap
     @FragmentKey(ChoosePrivateSpaceTypeFragment::class)
     fun bindChoosePrivateSpaceTypeFragment(fragment: ChoosePrivateSpaceTypeFragment): Fragment
+
+    @Binds
+    @IntoMap
+    @FragmentKey(CreateSpaceAdd3pidInvitesFragment::class)
+    fun bindCreateSpaceAdd3pidInvitesFragment(fragment: CreateSpaceAdd3pidInvitesFragment): Fragment
 
     @Binds
     @IntoMap
