@@ -219,10 +219,10 @@ val upHandler = object: MessagingReceiverHandler {
                 } else {
                     // Try to get the Event content faster
                     Timber.d("Requesting event in fast lane")
-                    getEventFastLane(session, notification.roomId, notification.eventId)
-
-                    Timber.d("Requesting background sync")
-                    session.requireBackgroundSync()
+                    if (!getEventFastLane(session, notification.roomId, notification.eventId)) {
+                        Timber.d("Requesting background sync")
+                        session.requireBackgroundSync()
+                    }
                 }
             }
         } catch (e: Exception) {
@@ -230,18 +230,13 @@ val upHandler = object: MessagingReceiverHandler {
         }
     }
 
-    private fun getEventFastLane(session: Session, roomId: String?, eventId: String?) {
-        roomId?.takeIf { it.isNotEmpty() } ?: return
-        eventId?.takeIf { it.isNotEmpty() } ?: return
+    private fun getEventFastLane(session: Session, roomId: String?, eventId: String?): Boolean {
+        roomId?.takeIf { it.isNotEmpty() } ?: return false
+        eventId?.takeIf { it.isNotEmpty() } ?: return false
 
         // If the room is currently displayed, we will not show a notification, so no need to get the Event faster
         if (notificationDrawerManager.shouldIgnoreMessageEventInRoom(roomId)) {
-            return
-        }
-
-        if (wifiDetector.isConnectedToWifi().not()) {
-            Timber.d("No WiFi network, do not get Event")
-            return
+            return true
         }
 
         coroutineScope.launch {
@@ -258,6 +253,7 @@ val upHandler = object: MessagingReceiverHandler {
                         notificationDrawerManager.refreshNotificationDrawer()
                     }
         }
+        return true
     }
 
     // check if the event was not yet received
