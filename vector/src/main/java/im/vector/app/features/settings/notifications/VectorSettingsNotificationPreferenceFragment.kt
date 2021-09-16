@@ -21,6 +21,8 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.os.Parcelable
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -115,6 +117,15 @@ class VectorSettingsNotificationPreferenceFragment @Inject constructor(
                 }
                 true
             }
+        }
+
+        findPreference<VectorPreference>(SETTINGS_UNIFIED_PUSH_RE_REGISTER)?.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            updateEnabledForDevice(false)
+            UPHelper.registerUnifiedPush(requireContext(), force = true) {
+                updateEnabledForDevice(true)
+                Handler(Looper.getMainLooper()).postDelayed({ refreshBackgroundSyncPrefs() } , 500)
+            }
+            true
         }
 
         refreshBackgroundSyncPrefs()
@@ -279,7 +290,7 @@ class VectorSettingsNotificationPreferenceFragment @Inject constructor(
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         return when (preference?.key) {
             VectorPreferences.SETTINGS_ENABLE_THIS_DEVICE_PREFERENCE_KEY -> {
-                updateEnabledForDevice(preference)
+                updateEnabledForDevice(preference as SwitchPreference)
                 true
             }
             VectorPreferences.SETTINGS_ENABLE_ALL_NOTIF_PREFERENCE_KEY   -> {
@@ -292,9 +303,14 @@ class VectorSettingsNotificationPreferenceFragment @Inject constructor(
         }
     }
 
-    private fun updateEnabledForDevice(preference: Preference?) {
-        val switchPref = preference as SwitchPreference
-        if (switchPref.isChecked) {
+    private fun updateEnabledForDevice(preference: SwitchPreference) {
+        updateEnabledForDevice(preference.isChecked)
+    }
+
+    private fun updateEnabledForDevice(enabled: Boolean) {
+        val pref = findPreference<VectorSwitchPreference>(VectorPreferences.SETTINGS_ENABLE_THIS_DEVICE_PREFERENCE_KEY)
+        pref?.isChecked = enabled
+        if (enabled) {
             UPHelper.registerUnifiedPush(requireContext())
         } else {
             UPHelper.getUpEndpoint(requireContext())?.let {
@@ -318,7 +334,7 @@ class VectorSettingsNotificationPreferenceFragment @Inject constructor(
                                             return@fold
                                         }
                                         // revert the check box
-                                        switchPref.isChecked = !switchPref.isChecked
+                                        pref?.isChecked = true
                                         Toast.makeText(activity, R.string.unknown_error, Toast.LENGTH_SHORT).show()
                                     }
                             )
@@ -351,5 +367,9 @@ class VectorSettingsNotificationPreferenceFragment @Inject constructor(
                         }
                     }
                 }
+    }
+
+    companion object {
+        const val SETTINGS_UNIFIED_PUSH_RE_REGISTER = "SETTINGS_UNIFIED_PUSH_RE_REGISTER"
     }
 }

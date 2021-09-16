@@ -124,6 +124,11 @@
             android:title="@string/settings_notification_troubleshoot"
             app:fragment="im.vector.app.features.settings.notifications.VectorSettingsNotificationsTroubleshootFragment" />
 
+        <im.vector.app.core.preference.VectorPreference
+            android:persistent="false"
+            android:key="SETTINGS_UNIFIED_PUSH_RE_REGISTER"
+            android:title="@string/settings_unifiedpush_reregister" />
+
     </im.vector.app.core.preference.VectorPreferenceCategory>
 
     <!--im.vector.app.core.preference.VectorPreferenceCategory
