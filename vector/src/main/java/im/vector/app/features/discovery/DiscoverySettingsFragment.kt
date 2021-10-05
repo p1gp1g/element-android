@@ -32,10 +32,10 @@ import im.vector.app.core.extensions.observeEvent
 import im.vector.app.core.extensions.registerStartForActivityResult
 import im.vector.app.core.platform.VectorBaseFragment
 import im.vector.app.core.utils.ensureProtocol
+import im.vector.app.core.utils.showIdentityServerConsentDialog
 import im.vector.app.databinding.FragmentGenericRecyclerBinding
 import im.vector.app.features.discovery.change.SetIdentityServerFragment
 import im.vector.app.features.settings.VectorSettingsActivity
-
 import org.matrix.android.sdk.api.session.identity.SharedState
 import org.matrix.android.sdk.api.session.identity.ThreePid
 import org.matrix.android.sdk.api.session.terms.TermsService
@@ -179,14 +179,9 @@ class DiscoverySettingsFragment @Inject constructor(
     override fun onTapUpdateUserConsent(newValue: Boolean) {
         if (newValue) {
             withState(viewModel) { state ->
-                MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle(R.string.identity_server_consent_dialog_title)
-                        .setMessage(getString(R.string.identity_server_consent_dialog_content, state.identityServer.invoke()))
-                        .setPositiveButton(R.string.yes) { _, _ ->
-                            viewModel.handle(DiscoverySettingsAction.UpdateUserConsent(true))
-                        }
-                        .setNegativeButton(R.string.no, null)
-                        .show()
+                requireContext().showIdentityServerConsentDialog(state.identityServer.invoke()) {
+                    viewModel.handle(DiscoverySettingsAction.UpdateUserConsent(true))
+                }
             }
         } else {
             viewModel.handle(DiscoverySettingsAction.UpdateUserConsent(false))
