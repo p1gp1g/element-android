@@ -24,6 +24,7 @@ import com.google.android.gms.common.GoogleApiAvailability
  * It has an alter ego in the fdroid variant.
  */
 object FcmHelper {
+
     /**
      * Check the device to make sure it has the Google Play Services APK.
      */
