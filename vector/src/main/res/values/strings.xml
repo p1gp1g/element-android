@@ -197,16 +197,16 @@
     <string name="room_displayname_empty_room">Empty room</string>
     <string name="room_displayname_empty_room_was">Empty room (was %s)</string>
 
-    <string name="initial_sync_start_server_computing">Initial Sync:\nWaiting for server response…</string>
-    <string name="initial_sync_start_downloading">Initial Sync:\nDownloading data…</string>
-    <string name="initial_sync_start_importing_account">Initial Sync:\nImporting account…</string>
-    <string name="initial_sync_start_importing_account_crypto">Initial Sync:\nImporting crypto</string>
-    <string name="initial_sync_start_importing_account_rooms">Initial Sync:\nImporting Rooms</string>
-    <string name="initial_sync_start_importing_account_joined_rooms">Initial Sync:\nImporting Joined Rooms</string>
-    <string name="initial_sync_start_importing_account_invited_rooms">Initial Sync:\nImporting Invited Rooms</string>
-    <string name="initial_sync_start_importing_account_left_rooms">Initial Sync:\nImporting Left Rooms</string>
-    <string name="initial_sync_start_importing_account_groups">Initial Sync:\nImporting Communities</string>
-    <string name="initial_sync_start_importing_account_data">Initial Sync:\nImporting Account Data</string>
+    <string name="initial_sync_start_server_computing">Initial sync:\nWaiting for server response…</string>
+    <string name="initial_sync_start_downloading">Initial sync:\nDownloading data…</string>
+    <string name="initial_sync_start_importing_account">Initial sync:\nImporting account…</string>
+    <string name="initial_sync_start_importing_account_crypto">Initial sync:\nImporting crypto</string>
+    <string name="initial_sync_start_importing_account_rooms">Initial sync:\nImporting rooms</string>
+    <string name="initial_sync_start_importing_account_joined_rooms">Initial sync:\nLoading your conversations\nIf you\'ve joined lots of rooms, this might take a while</string>
+    <string name="initial_sync_start_importing_account_invited_rooms">Initial sync:\nImporting invited rooms</string>
+    <string name="initial_sync_start_importing_account_left_rooms">Initial sync:\nImporting left rooms</string>
+    <string name="initial_sync_start_importing_account_groups">Initial sync:\nImporting communities</string>
+    <string name="initial_sync_start_importing_account_data">Initial sync:\nImporting account data</string>
 
 
     <string name="event_status_sent_message">Message sent</string>
@@ -322,6 +322,7 @@
     <string name="notification_sync_init">Initializing service</string>
     <string name="notification_sync_in_progress">Synchronising…</string>
     <string name="notification_listening_for_events">Listening for events</string>
+    <string name="notification_listening_for_notifications">Listening for notifications</string>
     <string name="notification_noisy_notifications">Noisy notifications</string>
     <string name="notification_silent_notifications">Silent notifications</string>
 
@@ -657,6 +658,8 @@
     <string name="login_error_unknown_host">This URL is not reachable, please check it</string>
     <string name="login_error_no_homeserver_found">This is not a valid Matrix server address</string>
     <string name="login_error_homeserver_not_found">Cannot reach a homeserver at this URL, please check it</string>
+    <string name="login_error_homeserver_from_url_not_found">Cannot reach a homeserver at the URL %s. Please check your link or choose a homeserver manually.</string>
+    <string name="login_error_homeserver_from_url_not_found_enter_manual">Choose homeserver</string>
     <string name="login_error_ssl_peer_unverified">"SSL Error: the peer's identity has not been verified."</string>
     <string name="login_error_ssl_other">"SSL Error."</string>
     <string name="login_error_ssl_handshake">Your device is using an outdated TLS security protocol, vulnerable to attack, for your security you will not be able to connect</string>
@@ -1076,6 +1079,9 @@
     <string name="room_settings_leave_conversation">Leave Conversation</string>
     <string name="room_settings_forget">Forget</string>
     <string name="room_settings_add_homescreen_shortcut">Add to Home screen</string>
+
+    <string name="shortcut_disabled_reason_room_left">The room has been left!</string>
+    <string name="shortcut_disabled_reason_sign_out">The session has been signed out!</string>
 
     <!-- home sliding menu -->
     <string name="room_sliding_menu_messages">Messages</string>
@@ -1858,7 +1864,7 @@
     <string name="command_description_deop_user">Deops user with given id</string>
     <string name="command_description_room_name">Sets the room name</string>
     <string name="command_description_invite_user">Invites user with given id to current room</string>
-    <string name="command_description_join_room">Joins room with given alias</string>
+    <string name="command_description_join_room">Joins room with given address</string>
     <string name="command_description_part_room">Leave room</string>
     <string name="command_description_topic">Set the room topic</string>
     <string name="command_description_kick_user">Kicks user with given id</string>
@@ -2384,11 +2390,14 @@
     <string name="settings_discovery_consent_title">Send emails and phone numbers</string>
     <string name="settings_discovery_consent_notice_on">You have given your consent to send emails and phone numbers to this identity server to discover other users from your contacts.</string>
     <string name="settings_discovery_consent_notice_off">You have not given your consent to send emails and phone numbers to this identity server to discover other users from your contacts.</string>
+    <string name="settings_discovery_consent_notice_off_2">Your contacts are private. To discover users from your contacts, we need your permission to send contact info to your identity server.</string>
     <string name="settings_discovery_consent_action_revoke">Revoke my consent</string>
     <string name="settings_discovery_consent_action_give_consent">Give consent</string>
 
     <string name="identity_server_consent_dialog_title">Send emails and phone numbers</string>
+    <string name="identity_server_consent_dialog_title_2">Send emails and phone numbers to %s</string>
     <string name="identity_server_consent_dialog_content">In order to discover existing contacts you know, do you accept to send your contact data (phone numbers and/or emails) to the configured identity server (%1$s)?\n\nFor more privacy, the sent data will be hashed before being sent.</string>
+    <string name="identity_server_consent_dialog_content_2">To discover existing contacts, you need to send contact info to your identity server.\n\nWe hash your data before sending for privacy. Do you consent to send this info?</string>
     <string name="identity_server_consent_dialog_neutral_policy">Policy</string>
 
     <string name="settings_discovery_enter_identity_server">Enter an identity server URL</string>

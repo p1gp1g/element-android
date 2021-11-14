@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.multibindings.IntoMap
 import im.vector.app.features.attachments.preview.AttachmentsPreviewFragment
 import im.vector.app.features.contactsbook.ContactsBookFragment
@@ -109,8 +111,8 @@ import im.vector.app.features.roomprofile.members.RoomMemberListFragment
 import im.vector.app.features.roomprofile.notifications.RoomNotificationSettingsFragment
 import im.vector.app.features.roomprofile.permissions.RoomPermissionsFragment
 import im.vector.app.features.roomprofile.settings.RoomSettingsFragment
-import im.vector.app.features.roomprofile.settings.joinrule.RoomJoinRuleChooseRestrictedFragment
 import im.vector.app.features.roomprofile.settings.joinrule.RoomJoinRuleFragment
+import im.vector.app.features.roomprofile.settings.joinrule.advanced.RoomJoinRuleChooseRestrictedFragment
 import im.vector.app.features.roomprofile.uploads.RoomUploadsFragment
 import im.vector.app.features.roomprofile.uploads.files.RoomUploadsFilesFragment
 import im.vector.app.features.roomprofile.uploads.media.RoomUploadsMediaFragment
@@ -157,6 +159,7 @@ import im.vector.app.features.usercode.ShowUserCodeFragment
 import im.vector.app.features.userdirectory.UserListFragment
 import im.vector.app.features.widgets.WidgetFragment
 
+@InstallIn(ActivityComponent::class)
 @Module
 interface FragmentModule {
     /**

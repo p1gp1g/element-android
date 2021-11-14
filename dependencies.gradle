@@ -11,13 +11,13 @@ def gradle = "7.0.3"
 // Ref: https://kotlinlang.org/releases.html
 def kotlin = "1.5.31"
 def kotlinCoroutines = "1.5.2"
-def dagger = "2.39.1"
+def dagger = "2.40"
 def retrofit = "2.9.0"
 def arrow = "0.8.2"
 def markwon = "4.6.2"
 def moshi = "1.12.0"
 def lifecycle = "2.2.0"
-def rxBinding = "3.1.0"
+def flowBinding = "1.2.0"
 def epoxy = "4.6.2"
 def mavericks = "2.4.0"
 def glide = "4.12.0"
@@ -34,7 +34,9 @@ def androidxTest = "1.4.0"
 ext.libs = [
         gradle      : [
                 'gradlePlugin'            : "com.android.tools.build:gradle:$gradle",
-                'kotlinPlugin'            : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
+                'kotlinPlugin'            : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin",
+                'hiltPlugin'              : "com.google.dagger:hilt-android-gradle-plugin:$dagger"
+
         ],
         jetbrains   : [
                 'kotlinStdlibJdk7'        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin",
@@ -42,7 +44,8 @@ ext.libs = [
                 'kotlinReflect'           : "org.jetbrains.kotlin:kotlin-reflect:$kotlin",
                 'coroutinesCore'          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutines",
                 'coroutinesAndroid'       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutines",
-                'coroutinesRx2'           : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$kotlinCoroutines"
+                'coroutinesRx2'           : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$kotlinCoroutines",
+                'coroutinesTest'          : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutines"
         ],
         androidx    : [
                 'appCompat'               : "androidx.appcompat:appcompat:1.3.1",
@@ -75,7 +78,9 @@ ext.libs = [
         ],
         dagger      : [
                 'dagger'                  : "com.google.dagger:dagger:$dagger",
-                'daggerCompiler'          : "com.google.dagger:dagger-compiler:$dagger"
+                'daggerCompiler'          : "com.google.dagger:dagger-compiler:$dagger",
+                'hilt'                    : "com.google.dagger:hilt-android:$dagger",
+                'hiltCompiler'            : "com.google.dagger:hilt-compiler:$dagger"
         ],
         squareup    : [
                 'moshi'                  : "com.squareup.moshi:moshi-adapters:$moshi",
@@ -102,7 +107,6 @@ ext.libs = [
                 'epoxyProcessor'         : "com.airbnb.android:epoxy-processor:$epoxy",
                 'epoxyPaging'            : "com.airbnb.android:epoxy-paging:$epoxy",
                 'mavericks'              : "com.airbnb.android:mavericks:$mavericks",
-                'mavericksRx'            : "com.airbnb.android:mavericks-rxjava2:$mavericks",
                 'mavericksTesting'       : "com.airbnb.android:mavericks-testing:$mavericks"
         ],
         mockk      : [
@@ -115,22 +119,25 @@ ext.libs = [
                 'bigImageViewer'         : "com.github.piasy:BigImageViewer:$bigImageViewer",
                 'glideImageLoader'       : "com.github.piasy:GlideImageLoader:$bigImageViewer",
                 'progressPieIndicator'   : "com.github.piasy:ProgressPieIndicator:$bigImageViewer",
-                'glideImageViewFactory'  : "com.github.piasy:GlideImageViewFactory:$bigImageViewer"
+                'glideImageViewFactory'  : "com.github.piasy:GlideImageViewFactory:$bigImageViewer",
+                'flowBinding'            : "io.github.reactivecircus.flowbinding:flowbinding-android:$flowBinding",
+                'flowBindingAppcompat'   : "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowBinding",
+                'flowBindingMaterial'    : "io.github.reactivecircus.flowbinding:flowbinding-material:$flowBinding"
         ],
         jakewharton : [
-                'timber'                 : "com.jakewharton.timber:timber:5.0.1",
-                'rxbinding'              : "com.jakewharton.rxbinding3:rxbinding:$rxBinding",
-                'rxbindingAppcompat'     : "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxBinding",
-                'rxbindingMaterial'      : "com.jakewharton.rxbinding3:rxbinding-material:$rxBinding"
+                'timber'                 : "com.jakewharton.timber:timber:5.0.1"
         ],
         jsonwebtoken: [
                 'jjwtApi'                : "io.jsonwebtoken:jjwt-api:$jjwt",
                 'jjwtImpl'               : "io.jsonwebtoken:jjwt-impl:$jjwt",
                 'jjwtOrgjson'            : "io.jsonwebtoken:jjwt-orgjson:$jjwt"
         ],
-        vanniktech: [
+        vanniktech  : [
                 'emojiMaterial'          : "com.vanniktech:emoji-material:$vanniktechEmoji",
                 'emojiGoogle'            : "com.vanniktech:emoji-google:$vanniktechEmoji"
+        ],
+        apache      : [
+                'commonsImaging'         : "org.apache.sanselan:sanselan:0.97-incubator"
         ],
         tests       : [
                 'kluent'                 : "org.amshove.kluent:kluent-android:1.68",

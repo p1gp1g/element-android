@@ -2260,7 +2260,7 @@
     <string name="command_description_kick_user">اخراج کاربر با شناسه داده شده</string>
     <string name="command_description_topic">تنظیم موضوع اتاق</string>
     <string name="command_description_part_room">ترک اتاق</string>
-    <string name="command_description_join_room">با نام مستعار داده‌شده به اتاق بپیوندید</string>
+    <string name="command_description_join_room">به اتاق با نشانی داده شده می‌پیوندد</string>
     <string name="command_description_invite_user">کاربر با شناسه داده شده را به این اتاق دعوت می کند</string>
     <string name="command_description_deop_user">کاربر با شناسه داده شده را غیر‌فعال می‌کند</string>
     <string name="command_description_op_user">سطح قدرت کاربر را تعریف می‌کند</string>
@@ -3002,4 +3002,7 @@
     <string name="command_description_room_name">نام اتاق را تنظیم می‌کند</string>
     <string name="command_description_unignore_user">به کاربری چشم گشوده و پیام‌های بعدیش را نشان می‌دهد</string>
     <string name="command_description_ignore_user">از کاربری چشم‌پوشی کرده و پیام‌هایش را از شما پنهان می‌کند</string>
+    <string name="a11y_presence_unavailable">ناموجود</string>
+    <string name="a11y_presence_offline">برون‌خط</string>
+    <string name="a11y_presence_online">برخط</string>
 </resources>
