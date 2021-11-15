@@ -121,6 +121,7 @@ val upHandler = object: VectorMessagingReceiverHandler {
                       wifiDetector: WifiDetector) {
         Timber.tag(loggerTag.value).d("Init vars")
         this.notificationDrawerManager = notificationDrawerManager
+        this.notifiableEventResolver = notifiableEventResolver
         this.pusherManager = pusherManager
         this.activeSessionHolder = activeSessionHolder
         this.vectorPreferences = vectorPreferences
