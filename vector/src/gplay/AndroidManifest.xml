@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="im.vector.app">
 
     <application>
@@ -11,6 +12,15 @@
             <intent-filter>
                 <action android:name="org.unifiedpush.android.distributor.REGISTER"/>
                 <action android:name="org.unifiedpush.android.distributor.UNREGISTER"/>
+            </intent-filter>
+        </receiver>
+        <receiver tools:replace="android:exported" android:exported="false"  android:enabled="true"  android:name=".core.pushers.VectorMessagingReceiver">
+            <intent-filter>
+                <action android:name="org.unifiedpush.android.connector.MESSAGE"/>
+                <action android:name="org.unifiedpush.android.connector.UNREGISTERED"/>
+                <action android:name="org.unifiedpush.android.connector.NEW_ENDPOINT"/>
+                <action android:name="org.unifiedpush.android.connector.REGISTRATION_FAILED"/>
+                <action android:name="org.unifiedpush.android.connector.REGISTRATION_REFUSED"/>
             </intent-filter>
         </receiver>
     </application>

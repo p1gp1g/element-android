@@ -268,7 +268,7 @@ android {
 
             resValue "bool", "isGplay", "true"
             buildConfigField "boolean", "ALLOW_FCM_USE", "true"
-            buildConfigField "boolean", "ALLOW_EXTERNAL_UNIFIEDPUSH_DISTRIB", "true"
+            buildConfigField "boolean", "ALLOW_EXTERNAL_UNIFIEDPUSH_DISTRIB", "false"
             buildConfigField "String", "SHORT_FLAVOR_DESCRIPTION", "\"G\""
             buildConfigField "String", "FLAVOR_DESCRIPTION", "\"GooglePlay\""
         }
