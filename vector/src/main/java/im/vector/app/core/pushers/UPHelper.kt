@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import im.vector.app.BuildConfig
 import im.vector.app.R
 import im.vector.app.core.di.DefaultSharedPreferences
 import im.vector.app.push.fcm.FcmHelper
@@ -85,6 +86,11 @@ object UPHelper {
 
     fun registerUnifiedPush(context: Context, force: Boolean = false, onDoneRunnable: Runnable? = null) {
         val up = Registration()
+        if (!BuildConfig.ALLOW_EXTERNAL_UNIFIEDPUSH_DISTRIB) {
+            up.saveDistributor(context, context.packageName)
+            up.registerApp(context)
+            return
+        }
         if (force) {
             // Un-register first
             up.unregisterApp(context)
